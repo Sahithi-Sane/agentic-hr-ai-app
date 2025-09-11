@@ -37,8 +37,8 @@ hr_agents/
 To get started, clone the repository to your local machine.
 
 ```bash
-git clone https://github.com/yourusername/hr_agents.git
-cd hr_agents
+git clone https://github.com/Sahithi-Sane/agentic-hr-ai-app.git
+cd agents
 ```
 
 ### 2. Set up a virtual environment
@@ -49,12 +49,6 @@ Creating a virtual environment helps manage dependencies for the project without
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-```
-
-#### For Windows:
-```bash
-python -m venv venv
-venv\Scriptsctivate
 ```
 
 ### 3. Install dependencies
