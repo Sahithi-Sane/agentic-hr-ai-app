@@ -188,18 +188,6 @@ This project is built using the following technologies:
 - **Hugging Face**: Provides pre-trained models and embeddings for natural language processing.
 - **Custom Utils**: Includes helpers for database management, memory handling, and generating interview slots.
 
-## Next Steps (Future Enhancements)
-
-### 1. **User Authentication**:
-   - Add login and user roles for HR professionals, allowing them to store their data securely.
-
-### 2. **Integrations**:
-   - Integrate with external systems such as **Slack**, **Google Calendar**, and **ATS systems** to automate more HR processes.
-
-### 3. **Deployment**:
-   - **Docker**: Containerize the app for easy deployment.
-   - **Cloud Deployment**: Deploy the app to cloud platforms like **AWS**, **GCP**, or **Azure** for scalable usage.
-
 ---
 
 ## 📊 Future Enhancements
@@ -210,6 +198,7 @@ This project is built using the following technologies:
 - Persistent database (PostgreSQL / NoSQL)
 - Monitoring and observability (LangSmith dashboards)
 - Role-based access and authentication
+- Containerize the app with Docker for deployment.
 
 ---
 
