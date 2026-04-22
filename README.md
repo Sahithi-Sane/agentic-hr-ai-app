@@ -1,34 +1,71 @@
-# HR Agents – Agentic AI App for Hiring
+# Agentic HR Assistant – AI Workflow Automation System
 
 ## Overview
-**Agentic HR AI App** is designed to assist **HR professionals** in planning and managing the **hiring process** for startups or enterprises. This app uses **LangChain**, **Hugging Face**, and custom-built agents to automate and streamline key HR functions like **job description generation**, **resume filtering**, **interview scheduling**, and **onboarding plans**.
+The **Agentic HR Assistant** is an AI-driven system designed to automate key stages of the hiring lifecycle, including job description generation, candidate screening, interview scheduling, and onboarding planning.
+
+Unlike traditional chatbots, this system follows an **agent-inspired architecture**, where multiple specialized components collaborate to complete complex workflows. The design mirrors real-world enterprise service management systems used in IT and HR operations.
 
 The app provides a user-friendly interface via **Streamlit** and integrates several AI-powered tools to assist HR professionals in making the hiring process smoother and more efficient.
 
-## Project Structure
+---
 
-Here’s the breakdown of the directory structure:
+## 🎯 Key Capabilities
+
+- 🧠 **Job Description Generation**  
+  Automatically generates structured job descriptions based on role requirements.
+
+- 📄 **Semantic Resume Screening**  
+  Uses embedding-based similarity to evaluate and rank candidates beyond keyword matching.
+
+- 🔁 **Agent-Based Workflow Orchestration**  
+  Modular components simulate agent behavior (planning → evaluation → action).
+
+- 📅 **Interview Scheduling (Mock MCP Integration)**  
+  Simulates external tool integration (calendar scheduling) via a mock service layer.
+
+- 📘 **Onboarding Plan Generation**  
+  Creates structured onboarding workflows (30-60-90 day plans).
+
+- 💬 **Interactive UI (Streamlit)**  
+  Lightweight frontend for demonstrating end-to-end workflow.
+
+---
+
+## Workflow
+
+1. User provides hiring requirement  
+2. System generates job description  
+3. Candidate resumes are indexed and evaluated  
+4. Candidates are ranked using semantic similarity  
+5. Interview scheduling is triggered  
+6. Onboarding plan is generated  
+
+---
+
+## Project Structure
 
 ```
 hr_agents/
-│── app.py                  # Streamlit entry point for running the app
-│── requirements.txt        # List of Python dependencies
-│── .env.example.txt        # Example environment variables file
+│── app.py                  # Streamlit entry point
+│── requirements.txt        # Dependencies
+│── .env.example.txt        # Environment variables template
 │
-├── agents/                 # Core AI agents responsible for business logic
-│   ├── job_planner.py      # Generates job descriptions
-│   ├── resume_filter.py    # Builds resume index and shortlists candidates
-│   ├── scheduler.py        # Creates interview schedules
-│   └── onboarding.py       # Generates onboarding plans
+├── agents/                 # Core agent modules
+│   ├── job_planner.py      # Job description generation
+│   ├── resume_filter.py    # Resume indexing + ranking
+│   ├── scheduler.py        # Interview scheduling
+│   └── onboarding.py       # Onboarding plan generation
 │
-├── utils/                  # Helper utilities for the app
-│   ├── calendar.py         # Helper to generate interview time slots
-│   ├── db.py               # Manages candidate data in the database
-│   └── memory.py           # Handles session and memory management
+├── utils/                  # Supporting utilities
+│   ├── calendar.py         # Interview slot generation
+│   ├── db.py               # Candidate data handling
+│   └── memory.py           # Session memory management
 │
 └── memory/
-    └── state.json          # Stores session data and memory for context
+    └── state.json          # Persistent session state
 ```
+---
+
 ## Demo Video 
 
 https://drive.google.com/file/d/1vppzSK5PttuaLklPSP8eh3Y55CrEAcuL/view?usp=sharing
@@ -37,79 +74,99 @@ https://drive.google.com/file/d/1vppzSK5PttuaLklPSP8eh3Y55CrEAcuL/view?usp=shari
 
 ### 1. Clone the repository
 
-To get started, clone the repository to your local machine.
-
 ```bash
 git clone https://github.com/Sahithi-Sane/agentic-hr-ai-app.git
-cd agents
+cd agentic-hr-ai-app
 ```
 
-### 2. Set up a virtual environment
+---
 
-Creating a virtual environment helps manage dependencies for the project without conflicting with your system libraries.
+### 2. Create virtual environment
 
-#### For Linux/Mac:
 ```bash
-python3 -m venv venv
-source venv/bin/activate
+python -m venv agentic_hr
 ```
 
-### 3. Install dependencies
+---
 
-Once the virtual environment is activated, install the necessary Python libraries using `requirements.txt`.
+### 3. Activate environment
+
+```bash
+agentic_hr\Scripts\activate   # Windows
+```
+
+---
+
+### 4. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Set up environment variables
+---
 
-Some services require **API keys** to work. You will need to set up the required environment variables to access them. Copy the example environment file and update it with your own API keys.
+### 5. Configure environment variables
 
-```bash
-cp .env.example.txt .env
-```
-
-Now, open the `.env` file and add the following keys:
+Create a `.env` file:
 
 ```env
-HUGGINGFACEHUB_API_TOKEN=your_hf_token
 OPENAI_API_KEY=your_openai_key
+LANGSMITH_API_KEY=your_langsmith_key
+LANGSMITH_TRACING=true
+LANGSMITH_PROJECT="Agentic HR"
 ```
 
-- **HUGGINGFACEHUB_API_TOKEN**: You can get this token by signing up at [Hugging Face](https://huggingface.co/) and accessing your account settings.
-- **OPENAI_API_KEY**: You can obtain this key from [OpenAI](https://beta.openai.com/signup/).
+Optional:
+```env
+HUGGINGFACEHUB_API_TOKEN=your_hf_token
+```
 
-### 5. Additional Setup 
+---
 
-If your app uses additional services (like a database or cloud APIs), ensure the corresponding configuration and keys are set up in `.env`. You can add any other required variables as needed.
-
-## Running the App
-
-After the setup, you can run the Streamlit app using the following command:
+### 6. Run the application
 
 ```bash
 streamlit run app.py
 ```
-
 This will open the app in your web browser. You can now interact with the different modules of the HR Agentic AI App.
+
+---
+
+## 🔌 Integrations
+
+- **Mock MCP (Default)**
+  - Used for stable demo and simulation of scheduling workflows
+
+- **Extensible Integrations**
+  - Google Calendar
+  - ServiceNow / ITSM tools
+  - HR systems (ATS platforms)
+
+--- 
 
 ## Features
 
-### 1. **Job Planning Agent**
-   - **Generate Job Descriptions**: Based on the role/title, the app automatically generates a detailed job description using the **LangChain agent** and the **Hugging Face model**.
+### 1. **Planner Agent**
+  - Interprets hiring requirements
+  - Generates structured job descriptions
 
-### 2. **Resume Filter Agent**
-   - **Index Resumes**: The app creates an index of resumes and shortlists candidates using **embeddings** from **Hugging Face** models.
+### 2. **Screening Agent**
+  - Converts resumes into embeddings
+  - Performs semantic similarity ranking
 
 ### 3. **Scheduler Agent**
-   - **Interview Scheduler**: Automatically generates structured interview schedules based on the number of candidates and available slots.
+  - Generates interview slots
+  - Simulates calendar integration via MCP layer
 
 ### 4. **Onboarding Agent**
-   - **Generate Onboarding Plan**: Customizes the 30-60-90 day onboarding plan for new hires.
+  - Produces onboarding plans based on role context
 
 ### 5. **Memory Management**
    - **Context-Aware Interactions**: The app retains session data using **memory** (saved in `state.json`) for more personalized and context-aware interactions.
+
+### 6. **MCP (Tool Interface Layer)**
+  - Simulates external integrations (e.g., calendar APIs)
+  - Designed to be replaceable with real services
 
 ## Tech Stack
 
@@ -120,12 +177,6 @@ This project is built using the following technologies:
 - **LangChain**: A framework for building AI-powered agents.
 - **Hugging Face**: Provides pre-trained models and embeddings for natural language processing.
 - **Custom Utils**: Includes helpers for database management, memory handling, and generating interview slots.
-
-## How the App Works
-
-- **LangChain Agents** orchestrate the flow of tasks. For example, when you want to generate a job description, the app first collects input from the user (like role, experience, and skills), and then uses the **Job Planning Agent** to generate a detailed job description.
-
-- **Memory** is utilized to store important session data such as the last generated job description or the list of candidates, making the app capable of contextually aware interactions.
 
 ## Next Steps (Future Enhancements)
 
@@ -139,8 +190,31 @@ This project is built using the following technologies:
    - **Docker**: Containerize the app for easy deployment.
    - **Cloud Deployment**: Deploy the app to cloud platforms like **AWS**, **GCP**, or **Azure** for scalable usage.
 
+---
+
+## 📊 Future Enhancements
+
+- Evaluation metrics (Precision@K, ranking quality)
+- Confidence scoring for candidate selection
+- Real API integrations (calendar, HR tools)
+- Persistent database (PostgreSQL / NoSQL)
+- Monitoring and observability (LangSmith dashboards)
+- Role-based access and authentication
+
+---
+
 ## Troubleshooting
 
 - **App Not Starting**: Make sure all dependencies are installed and `.env` variables are correctly set.
 - **API Key Issues**: If you encounter issues with API calls, ensure that the keys in the `.env` file are correct and that the respective APIs are active.
 
+## Note
+
+This is a **prototype system** focused on demonstrating architecture and workflow design.  
+It is designed to be easily extended into a production-grade system.
+
+---
+
+## 👤 Author
+
+**Sahithi Sane**  
