@@ -47,8 +47,13 @@ The app provides a user-friendly interface via **Streamlit** and integrates seve
 ```
 hr_agents/
 │── app.py                  # Streamlit entry point
+│── graphy                  # LangGraph StateGraph orchestration
 │── requirements.txt        # Dependencies
-│── .env.example.txt        # Environment variables template
+│── .env                    # Environment variables template
+│
+├── mcp_tools/              # MCP connections
+│   ├── __init__.py        
+│   ├── calender_tool.py    # Calender MCP
 │
 ├── agents/                 # Core agent modules
 │   ├── job_planner.py      # Job description generation
@@ -56,10 +61,15 @@ hr_agents/
 │   ├── scheduler.py        # Interview scheduling
 │   └── onboarding.py       # Onboarding plan generation
 │
+├── data/                   # Data 
+│   ├── applicatiions.json  # All the applications for multiple roles
+│   ├── candidates.json     # Unique candidates
+│   
 ├── utils/                  # Supporting utilities
 │   ├── calendar.py         # Interview slot generation
 │   ├── db.py               # Candidate data handling
 │   └── memory.py           # Session memory management
+│   └── guardrails.py       # Safety checks before and after agents
 │
 └── memory/
     └── state.json          # Persistent session state
